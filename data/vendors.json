@@ -1,6 +1,6 @@
 {
   "_comment": "出店者一覧。開催回ごとに配列を入れ替えてください。categoryは絞り込み表示に利用します。",
-  "updatedFor": "sample-event",
+  "updatedFor": "2026-halloween-yanagawa",
   "vendors": [
     {
       "name": "出店者名(サンプル)",
