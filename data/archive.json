@@ -1,0 +1,12 @@
+{
+  "_comment": "過去に開催したイベントの一覧。新しい回を開催したら、現在の開催回をこのファイルに追記し、site-config.jsonを次回情報に書き換えてください。detailLinkはevents/配下の個別ページへのパス(任意)です。",
+  "events": [
+    {
+      "id": "sample-past-event",
+      "name": "マーメイドフェスタ(サンプル・過去回)",
+      "dateText": "20XX年XX月",
+      "summary": "過去の開催回の概要をここに記載します。写真やレポートは個別ページで紹介できます。",
+      "detailLink": "events/sample-past-event/index.html"
+    }
+  ]
+}

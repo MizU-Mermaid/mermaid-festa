@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja" data-base="./">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ステージパフォーマンス | マーメイドフェスタ</title>
+<meta name="description" content="マーメイドフェスタのステージパフォーマンス情報。タイムテーブルや出演内容をご案内します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="stage">
+
+<div data-include="header"></div>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">STAGE PERFORMANCE</p>
+    <h1>ステージパフォーマンス</h1>
+    <p>会場ステージで行われるショーやパフォーマンスのタイムテーブルをご案内します。</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="breadcrumb"><a href="index.html">TOP</a> / ステージパフォーマンス</p>
+    <p class="placeholder-note">※タイムテーブルは開催内容の決定に伴い更新されます。最新情報は開催直前にご確認ください。</p>
+
+    <div id="stage-list" class="grid grid--2" style="margin-top: 30px;">
+      <!-- data/stage.json の内容がJSで挿入されます -->
+    </div>
+  </div>
+</section>
+
+<div data-include="footer"></div>
+
+<script src="assets/js/data-loader.js"></script>
+<script src="assets/js/include-partials.js"></script>
+<script>
+  loadJSON("data/stage.json").then(function (data) {
+    var list = document.getElementById("stage-list");
+    data.programs.forEach(function (p) {
+      var card = el("div", "card");
+      card.innerHTML =
+        '<span class="tag">' + p.time + '</span>' +
+        '<h3>' + p.title + '</h3>' +
+        '<p style="color: var(--color-teal); font-weight:700; margin-bottom:6px;">' + p.performer + '</p>' +
+        '<p>' + p.description + '</p>';
+      list.appendChild(card);
+    });
+  }).catch(function (err) { console.error(err); });
+</script>
+</body>
+</html>

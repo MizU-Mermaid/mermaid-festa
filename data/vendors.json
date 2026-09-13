@@ -1,0 +1,21 @@
+{
+  "_comment": "出店者一覧。開催回ごとに配列を入れ替えてください。categoryは絞り込み表示に利用します。",
+  "updatedFor": "sample-event",
+  "vendors": [
+    {
+      "name": "出店者名(サンプル)",
+      "category": "フード",
+      "description": "出店者の紹介文を入力してください。"
+    },
+    {
+      "name": "出店者名(サンプル)",
+      "category": "雑貨・アクセサリー",
+      "description": "出店者の紹介文を入力してください。"
+    },
+    {
+      "name": "出店者名(サンプル)",
+      "category": "ワークショップ",
+      "description": "出店者の紹介文を入力してください。"
+    }
+  ]
+}

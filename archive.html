@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja" data-base="./">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>過去イベント | マーメイドフェスタ</title>
+<meta name="description" content="これまでに開催したマーメイドフェスタのアーカイブ一覧です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="archive">
+
+<div data-include="header"></div>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">PAST EVENTS</p>
+    <h1>過去イベント</h1>
+    <p>これまでに開催したマーメイドフェスタのアーカイブです。</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="breadcrumb"><a href="index.html">TOP</a> / 過去イベント</p>
+    <p class="placeholder-note">※開催実績が増えるごとに、このページへ回を追加していきます。個別ページは <code>events/</code> フォルダ配下に作成します。</p>
+
+    <div id="archive-list" class="grid grid--3" style="margin-top: 30px;"></div>
+  </div>
+</section>
+
+<div data-include="footer"></div>
+
+<script src="assets/js/data-loader.js"></script>
+<script src="assets/js/include-partials.js"></script>
+<script>
+  loadJSON("data/archive.json").then(function (data) {
+    var list = document.getElementById("archive-list");
+    data.events.forEach(function (ev) {
+      var card = el("div", "card");
+      var linkHtml = ev.detailLink ? '<p><a href="' + ev.detailLink + '">詳細を見る →</a></p>' : "";
+      card.innerHTML =
+        '<span class="tag">' + ev.dateText + '</span>' +
+        '<h3>' + ev.name + '</h3>' +
+        '<p>' + ev.summary + '</p>' +
+        linkHtml;
+      list.appendChild(card);
+    });
+  }).catch(function (err) { console.error(err); });
+</script>
+</body>
+</html>

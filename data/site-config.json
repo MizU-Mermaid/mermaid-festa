@@ -1,0 +1,19 @@
+{
+  "_comment": "このファイルは『現在開催中/直近の』イベント情報を管理します。開催回が切り替わったら、このファイルの内容を書き換えてください。過去の回はarchive.jsonへ移動します。",
+  "currentEvent": {
+    "id": "sample-event",
+    "seasonLabel": "SAMPLE EVENT",
+    "name": "マーメイドフェスタ(開催回未定)",
+    "catchphrase": "海と魔法が交わる、幻想の一日。",
+    "dateText": "開催日程は決定次第お知らせします",
+    "venueText": "会場は決定次第お知らせします",
+    "status": "準備中",
+    "description": "マーメイドフェスタは、海・魔法・異空間をテーマにした体験型イベントです。次回開催の詳細が決まり次第、このページを更新します。",
+    "ctaLabel": "イベント詳細を見る",
+    "ctaLink": "#about"
+  },
+  "sns": {
+    "instagram": "https://www.instagram.com/",
+    "x": "https://x.com/"
+  }
+}

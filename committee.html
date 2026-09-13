@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja" data-base="./">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>実行委員会 | マーメイドフェスタ</title>
+<meta name="description" content="マーメイドフェスタ実行委員会のご紹介とお問い合わせ先です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="committee">
+
+<div data-include="header"></div>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">COMMITTEE</p>
+    <h1>実行委員会</h1>
+    <p>マーメイドフェスタを企画・運営する実行委員会のご紹介です。</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="breadcrumb"><a href="index.html">TOP</a> / 実行委員会</p>
+
+    <p id="committee-intro" style="max-width: 720px;"></p>
+
+    <table class="simple-table" id="committee-roles" style="margin: 30px 0;">
+      <tbody></tbody>
+    </table>
+
+    <div class="notice-box" id="committee-contact"></div>
+  </div>
+</section>
+
+<div data-include="footer"></div>
+
+<script src="assets/js/data-loader.js"></script>
+<script src="assets/js/include-partials.js"></script>
+<script>
+  loadJSON("data/committee.json").then(function (data) {
+    document.getElementById("committee-intro").textContent = data.intro;
+
+    var tbody = document.querySelector("#committee-roles tbody");
+    data.roles.forEach(function (r) {
+      var tr = document.createElement("tr");
+      tr.innerHTML = "<th>" + r.role + "</th><td>" + r.note + "</td>";
+      tbody.appendChild(tr);
+    });
+
+    var contact = document.getElementById("committee-contact");
+    contact.innerHTML =
+      "<strong>お問い合わせ:</strong> " + data.contact.email + "<br>" + data.contact.note;
+  }).catch(function (err) { console.error(err); });
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja" data-base="./">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>仮装コンテスト | マーメイドフェスタ</title>
+<meta name="description" content="マーメイドフェスタの仮装コンテスト情報。テーマ・部門・スケジュールをご案内します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="contest">
+
+<div data-include="header"></div>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">COSTUME CONTEST</p>
+    <h1>仮装コンテスト</h1>
+    <p id="contest-summary">テーマに沿った仮装で参加できるコンテストです。</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="breadcrumb"><a href="index.html">TOP</a> / 仮装コンテスト</p>
+
+    <div class="section-heading" style="text-align:left; margin-bottom: 20px;">
+      <p class="eyebrow">THEME</p>
+      <h2 id="contest-theme">テーマ未定</h2>
+    </div>
+
+    <h3>参加部門</h3>
+    <div id="contest-categories" class="grid grid--3" style="margin-bottom: 40px;"></div>
+
+    <h3>スケジュール</h3>
+    <table class="simple-table" id="contest-schedule">
+      <tbody></tbody>
+    </table>
+
+    <p class="placeholder-note">※エントリー方法・応募締切などの詳細は、開催が決定次第このページで公開します。</p>
+  </div>
+</section>
+
+<div data-include="footer"></div>
+
+<script src="assets/js/data-loader.js"></script>
+<script src="assets/js/include-partials.js"></script>
+<script>
+  loadJSON("data/contest.json").then(function (data) {
+    document.getElementById("contest-summary").textContent = data.summary;
+    document.getElementById("contest-theme").textContent = data.theme;
+
+    var catWrap = document.getElementById("contest-categories");
+    data.categories.forEach(function (c) {
+      var card = el("div", "card");
+      card.innerHTML = "<h3>" + c.name + "</h3><p>" + c.description + "</p>";
+      catWrap.appendChild(card);
+    });
+
+    var tbody = document.querySelector("#contest-schedule tbody");
+    data.schedule.forEach(function (s) {
+      var tr = document.createElement("tr");
+      tr.innerHTML = "<th>" + s.label + "</th><td>" + s.value + "</td>";
+      tbody.appendChild(tr);
+    });
+  }).catch(function (err) { console.error(err); });
+</script>
+</body>
+</html>

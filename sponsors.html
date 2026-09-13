@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja" data-base="./">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>協賛企業 | マーメイドフェスタ</title>
+<meta name="description" content="マーメイドフェスタを支えていただいている協賛企業・団体様のご紹介です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="sponsors">
+
+<div data-include="header"></div>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">SPONSORS</p>
+    <h1>協賛企業</h1>
+    <p>マーメイドフェスタの開催を支えていただいている企業・団体様です。</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="breadcrumb"><a href="index.html">TOP</a> / 協賛企業</p>
+
+    <div id="sponsor-tiers"></div>
+
+    <p class="placeholder-note" style="margin-top:30px;">※協賛のお問い合わせは実行委員会ページよりご連絡ください。</p>
+  </div>
+</section>
+
+<div data-include="footer"></div>
+
+<script src="assets/js/data-loader.js"></script>
+<script src="assets/js/include-partials.js"></script>
+<script>
+  loadJSON("data/sponsors.json").then(function (data) {
+    var wrap = document.getElementById("sponsor-tiers");
+    data.tiers.forEach(function (tier) {
+      var section = el("div", "", "");
+      section.style.marginBottom = "36px";
+      var heading = el("h3", "", tier.tier);
+      section.appendChild(heading);
+
+      var grid = el("div", "grid grid--4");
+      tier.sponsors.forEach(function (s) {
+        var card = el("div", "card text-center");
+        var inner = s.url
+          ? '<h3><a href="' + s.url + '" target="_blank" rel="noopener">' + s.name + "</a></h3>"
+          : "<h3>" + s.name + "</h3>";
+        card.innerHTML = inner;
+        grid.appendChild(card);
+      });
+      section.appendChild(grid);
+      wrap.appendChild(section);
+    });
+  }).catch(function (err) { console.error(err); });
+</script>
+</body>
+</html>

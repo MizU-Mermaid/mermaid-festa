@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja" data-base="./">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スタンプラリー | マーメイドフェスタ</title>
+<meta name="description" content="マーメイドフェスタ会場で楽しめるスタンプラリー企画のご案内です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="stamprally">
+
+<div data-include="header"></div>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">STAMP RALLY</p>
+    <h1>スタンプラリー</h1>
+    <p id="stamp-summary">会場内のスポットを巡ってスタンプを集める企画です。</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="breadcrumb"><a href="index.html">TOP</a> / スタンプラリー</p>
+
+    <h3>スタンプスポット</h3>
+    <div id="stamp-spots" class="grid grid--3" style="margin-bottom: 40px;"></div>
+
+    <h3>景品</h3>
+    <table class="simple-table" id="stamp-rewards">
+      <tbody></tbody>
+    </table>
+
+    <p class="placeholder-note">※スポットの場所や景品内容は開催が決定次第、順次更新します。</p>
+  </div>
+</section>
+
+<div data-include="footer"></div>
+
+<script src="assets/js/data-loader.js"></script>
+<script src="assets/js/include-partials.js"></script>
+<script>
+  loadJSON("data/stamprally.json").then(function (data) {
+    document.getElementById("stamp-summary").textContent = data.summary;
+
+    var spots = document.getElementById("stamp-spots");
+    data.spots.forEach(function (s) {
+      var card = el("div", "card");
+      card.innerHTML = "<h3>" + s.name + "</h3><p>" + s.hint + "</p>";
+      spots.appendChild(card);
+    });
+
+    var tbody = document.querySelector("#stamp-rewards tbody");
+    data.rewards.forEach(function (r) {
+      var tr = document.createElement("tr");
+      tr.innerHTML = "<th>" + r.count + "</th><td>" + r.prize + "</td>";
+      tbody.appendChild(tr);
+    });
+  }).catch(function (err) { console.error(err); });
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja" data-base="./">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>出店者一覧 | マーメイドフェスタ</title>
+<meta name="description" content="マーメイドフェスタに出店するお店・ブースの一覧です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="vendors">
+
+<div data-include="header"></div>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">VENDORS</p>
+    <h1>出店者一覧</h1>
+    <p>会場に出店するお店・ブースをご紹介します。</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="breadcrumb"><a href="index.html">TOP</a> / 出店者一覧</p>
+    <p class="placeholder-note">※出店者情報は決定次第、順次追加していきます。</p>
+
+    <div id="vendor-list" class="grid grid--3" style="margin-top: 30px;"></div>
+  </div>
+</section>
+
+<div data-include="footer"></div>
+
+<script src="assets/js/data-loader.js"></script>
+<script src="assets/js/include-partials.js"></script>
+<script>
+  loadJSON("data/vendors.json").then(function (data) {
+    var list = document.getElementById("vendor-list");
+    data.vendors.forEach(function (v) {
+      var card = el("div", "card");
+      card.innerHTML =
+        '<span class="tag">' + v.category + '</span>' +
+        '<h3>' + v.name + '</h3>' +
+        '<p>' + v.description + '</p>';
+      list.appendChild(card);
+    });
+  }).catch(function (err) { console.error(err); });
+</script>
+</body>
+</html>

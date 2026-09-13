@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja" data-base="./">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史・年表 | マーメイドフェスタ</title>
+<meta name="description" content="マーメイドフェスタのこれまでのあゆみを年表で紹介します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="history">
+
+<div data-include="header"></div>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">HISTORY</p>
+    <h1>マーメイドフェスタの歴史・年表</h1>
+    <p>これまでのあゆみをご紹介します。</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="breadcrumb"><a href="index.html">TOP</a> / 歴史・年表</p>
+
+    <div id="history-timeline" class="timeline" style="margin-top: 30px;"></div>
+  </div>
+</section>
+
+<div data-include="footer"></div>
+
+<script src="assets/js/data-loader.js"></script>
+<script src="assets/js/include-partials.js"></script>
+<script>
+  loadJSON("data/history.json").then(function (data) {
+    var wrap = document.getElementById("history-timeline");
+    data.timeline.forEach(function (item) {
+      var node = el("div", "timeline__item");
+      node.innerHTML =
+        '<div class="timeline__year">' + item.year + '</div>' +
+        '<h3>' + item.title + '</h3>' +
+        '<p>' + item.description + '</p>';
+      wrap.appendChild(node);
+    });
+  }).catch(function (err) { console.error(err); });
+</script>
+</body>
+</html>
